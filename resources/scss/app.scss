@@ -14,8 +14,10 @@ $fa-font-path: "../fonts/webfonts" !default;
     overflow: hidden;
     display: flex;
     #sidebar{
-        width: 300px;
+        width: 250px;
+        min-width: 70px;
         background-color: palevioletred;
+        text-wrap: pretty;
     }
     #wrapper{
         background-color: pink;

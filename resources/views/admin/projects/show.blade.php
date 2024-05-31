@@ -4,8 +4,8 @@
 @section('content')
 
 <section>
-    <h1>{{$projects->title}}</h1>
+    <h1>{{$project->title}}</h1>
     <p>{{$project->content}}</p>
-    <img src="{{$project->image}}" alt="{{$projects->title}}">
+    <img src="{{$project->image}}" alt="{{$project->title}}">
 </section>
 @endsection

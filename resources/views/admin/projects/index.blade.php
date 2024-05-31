@@ -3,11 +3,12 @@
 
 @section('content')
     <section class="container">
-        <div class="d-flex justify-content-between py-4">
-            <h1 class="text-uppercase">Projects</h1>
+        <div class="d-flex justify-content-between align-items-center py-4">
+            <h1 class="text-uppercase fw-bold">Projects</h1>
             <a href="{{route('admin.projects.create')}}" class="btn btn-primary">New project</a>
-        </div>align-items-center
-        <table class="table">
+        </div>
+        <!-- Table -->
+        <table class="table table-hover overflow-x-scroll">
             <thead>
                 <tr>
                 <th scope="col">ID</th>
@@ -20,17 +21,26 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($project as $project)
+                @foreach($projects as $project)
                 <tr>
                 <td>{{$project->id}}</td>
                 <td>{{$project->title}}</td>
                 <td>{{$project->slug}}</td>
                 <td>{{$project->create_at}}</td>
                 <td>{{$project->update_at}}</td>
+                <!-- Actions -->
                 <td>
-                    <a href="{{route('admin.project.show', $project->slug)}}"><i class="fa-solid fa-eye"></i></a>
-                    <a href="{{route('admin.project.edit', $project->slug)}}"><i class="fa-solid fa-pen"></i></a>
+                    <a href="{{route('admin.projects.show', $project->slug)}}" class="text-black"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{route('admin.projects.edit', $project->slug)}}" class="link-success"><i class="fa-solid fa-pen"></i></a>
+                    <!-- Delete -->
+                    <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline-block">
+                    @csrf
+                    @method('Delete')
+                    <button type="submit" class="border-0 bg-transparent text-danger">
                     <i class="fa-solid fa-trash"></i>
+                    </button>
+                </form>
+                    
                 </td>
                 </tr>
                 @endforeach
