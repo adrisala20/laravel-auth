@@ -9,9 +9,15 @@ use Illuminate\Support\Str;
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'content', 'slug'];
+    protected $fillable = ['title','image', 'content', 'slug'];
     public static function generateSlug($title)
     {
-        return Str::slug($title, '-');
+        $slug = Str::slug($title, '-');
+        $count = 1;
+        while(Project::where('slug', $slug )->first()) {
+            $slug= Str::slug($title) . '-' . $count . '-';
+            $count++;
+        }
+        return $slug;
     }
 }
