@@ -30,8 +30,8 @@
                 <td>{{$project->update_at}}</td>
                 <!-- Actions -->
                 <td>
-                    <a href="{{route('admin.projects.show', $project->slug)}}" class="text-black"><i class="fa-solid fa-eye"></i></a>
-                    <a href="{{route('admin.projects.edit', $project->slug)}}" class="link-success"><i class="fa-solid fa-pen"></i></a>
+                    <a href="{{route('admin.projects.show', $project->slug)}}" class="text-black" title="show"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{route('admin.projects.edit', $project->slug)}}" class="link-success" title="edit"><i class="fa-solid fa-pen"></i></a>
                     <!-- Delete -->
                     <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline-block">
                     @csrf
