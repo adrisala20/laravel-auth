@@ -6,6 +6,8 @@
 <section>
     <h1>{{$project->title}}</h1>
     <p>{{$project->content}}</p>
-    <img src="{{$project->image}}" alt="{{$project->title}}">
+    <div>
+        <img src="{{$project->image}}" alt="{{$project->title}}" class="img-fluid">
+    </div>
 </section>
 @endsection

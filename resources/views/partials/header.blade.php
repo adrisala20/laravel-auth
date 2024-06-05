@@ -19,7 +19,7 @@
           </a>
         </li>
         <!-- Icon logout -->
-        <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link me-3 me-lg-0" href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();" title="Logout">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>

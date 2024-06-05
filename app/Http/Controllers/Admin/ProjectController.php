@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\StoreProjectRequest;
 class ProjectController extends Controller
 {
     /**
@@ -23,15 +24,26 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.projects.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        //
+        $form_data = $request->all();
+        $form_data['slug'] = Project::generateSlug($form_data['title']);
+        if($request->hasFile('image')){
+            //dd($request->file('image'));
+            $img_path =Storage::put('image', $request->image);
+            //dd($img_path);
+            $form_data['image'] = $img_path;
+        }
+
+        $newPost = Project::create($form_data);
+        return redirect()->route('admin.projects.show', $newPost->slug);
     }
 
     /**
@@ -39,6 +51,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        
         return view("admin.projects.show",compact("project"));
     }
 
