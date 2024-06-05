@@ -4,7 +4,7 @@
 
 @section('content')
     <section>
-        <h2>Create a new post</h2>
+        <h2>Create a new project</h2>
         <form action="{{ route('admin.projects.store') }}" method="POST">
             @csrf
             <div class="mb-3">

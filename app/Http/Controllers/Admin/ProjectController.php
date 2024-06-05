@@ -7,7 +7,8 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
-use Spatie\LaravelIgnition\Http\Requests\UpdateConfigRequest;
+
+//use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -16,7 +17,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects= Project::all();
+        //$projects= Project::all();
+        $projects = Project::paginate(5);
        // dd($projects)  
         return view("admin.projects.index",compact("projects"));
     }
@@ -75,7 +77,10 @@ class ProjectController extends Controller
         if ($project->title !== $form_data['title']) {
             $form_data['slug'] = Project::generateSlug($form_data['title']);
         }
-        $project->update($form_data);
+        // DB::enableQueryLog();
+        $project->update($form_data); //query da eseguire
+        // $query = DB::getQueryLog();
+        // dd($query);
         return redirect()->route("admin.projects.show", $project->slug);
     }
 

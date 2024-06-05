@@ -4,14 +4,17 @@
 
 @section('content')
     <section>
-        <h2>Create a new post</h2>
-        <form action="{{ route('admin.projects.update') }}" method="POST">
+        <div class="d-flex justify-content-between align-items-center py-4">
+            <h2>Edit project: {{$project->title}}</h2>
+            <a href="{{route('admin.projects.show', $project->slug)}}" class="btn btn-danger">Show Project</a>
+        </div>
+        <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                    value="{{ old('title', $$project->title) }}" minlength="3" maxlength="200" required>
+                    value="{{ old('title', $project->title) }}" minlength="3" maxlength="200" required>
                 @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
