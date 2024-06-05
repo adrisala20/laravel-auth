@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
-
 use App\Http\Requests\StoreProjectRequest;
 class ProjectController extends Controller
 {
@@ -34,6 +33,7 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $form_data = $request->all();
+        $form_data = $request->validated();
         $form_data['slug'] = Project::generateSlug($form_data['title']);
         if($request->hasFile('image')){
             //dd($request->file('image'));
