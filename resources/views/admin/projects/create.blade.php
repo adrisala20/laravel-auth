@@ -15,7 +15,7 @@
                 @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <div id="titleHelp" class="form-text text-white">Inserire minimo 3 caratteri e massimo 200</div>
+                <div id="titleHelp" class="form-text text-white">Insert a min of 3 and max of 200 letters</div>
             </div>
             <!-- IMAGE -->
             <div class="mb-3">

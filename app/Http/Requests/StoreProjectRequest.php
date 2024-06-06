@@ -22,8 +22,8 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|unique|max:200|min:3',
-            'image'=> 'nullable|max:255',
+            'title' => 'required|unique:projects|max:200|min:3',
+            'image'=> 'nullable|image|max:255',
             'content'=> 'nullable',
         ];
     }
@@ -31,7 +31,7 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'title.required' => 'Il titolo è obbligatorio!',
-            'title.unique:posts' => 'Questo titolo esiste già!',
+            'title.unique:project' => 'Questo titolo esiste già!',
             'title.max' => 'Il titolo deve essere lungo massimo :max caratteri!',
             'title.min' => 'Il titolo deve essere lungo almeno :min caratteri!',
             'image.max' => 'La URL deve essere lungo massimo :max caratteri!'

@@ -7,6 +7,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
 
 //use Illuminate\Support\Facades\DB;
 
@@ -47,8 +48,8 @@ class ProjectController extends Controller
             $form_data['image'] = $img_path;
         }
 
-        $newPost = Project::create($form_data);
-        return redirect()->route('admin.projects.show', $newPost->slug);
+        $newProject = Project::create($form_data);
+        return redirect()->route('admin.projects.show', $newProject->slug);
     }
 
     /**
