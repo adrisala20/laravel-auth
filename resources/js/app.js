@@ -24,4 +24,28 @@ deleteSubmitButtons.forEach((button)=>{
             button.parentElement.submit();
         });
     }))
-})
+});
+
+//funzione per prendere i file
+
+const image = document.getElementById("upload_image");
+
+//verifica se esiste nella pagina
+if (image) {
+    image.addEventListener("change", () => {
+        //prendo l'immagine
+        const preview = document.getElementById("upload_preview");
+
+        //creo nuovo oggetto file reader
+        const oFReader = new FileReader();
+
+        //uso il metodo readAsDataURL dell'oggetto creato per leggere il file
+        oFReader.readAsDataURL(image.files[0]);
+
+        //al termine della lettura del file uso l'evento onload
+        oFReader.onload = function (event) {
+            //metto nel src della preview l'immagine
+            preview.src = event.target.result;
+        };
+    });
+}

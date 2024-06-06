@@ -42,8 +42,8 @@ class ProjectController extends Controller
         $form_data = $request->validated();
         $form_data['slug'] = Project::generateSlug($form_data['title']);
         if($request->hasFile('image')){
-            //dd($request->file('image'));
-            $img_path =Storage::put('image', $request->image);
+            //dd($request->file('image')); 
+            $img_path =Storage::put('image', $request->image); //storage/image//nomefile.jpeg
             //dd($img_path);
             $form_data['image'] = $img_path;
         }

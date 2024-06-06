@@ -19,9 +19,11 @@
             </div>
             <!-- IMAGE -->
             <div class="mb-3">
-                <label for="image" class="form-label">Image</label>
+                <!-- placeholder -->
+                <img src="/image/placeholder.jpeg" id="upload_preview" witdh="100" class="img-preview">
+                <label for="image" class="form-label mt-3">Image</label>
                 <input type="file" accept="image/*" class="form-control @error('image') is-invalid @enderror" id="upload_image"
-                    name="image" value="{{ old('image') }}" maxlength="255">
+                    name="image" value="{{ old('image') }}">
                 @error('image')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

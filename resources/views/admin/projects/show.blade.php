@@ -15,9 +15,16 @@
               </form>
         </div>
     </div>
+    <div class="row">
+        <div class="col-4 img-show">
+            <img src="{{ asset('storage/' . $project->image)}}" alt="{{$project->title}}" class="img-fluid"> 
+        </div>
+        <div class="col-6">
+            <p>{{$project->content}}</p>
+        </div>
+       
+    </div>
 
-    <p>{{$project->content}}</p>
-    <img src="{{$project->image}}" alt="{{$project->title}}">
 </section>
 @include('partials.modal-delete')
 @endsection
