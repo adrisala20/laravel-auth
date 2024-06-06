@@ -77,6 +77,15 @@ class ProjectController extends Controller
         $form_data = $request->all();
         if ($project->title !== $form_data['title']) {
             $form_data['slug'] = Project::generateSlug($form_data['title']);
+        };
+        if($request->hasFile('image')){
+            //controllo se prima c'era un'img
+            if($project->image){
+                Storage::DELETE($project->image);
+            }
+            $img_path =Storage::put('image', $request->image); 
+
+            $form_data['image'] = $img_path;
         }
         // DB::enableQueryLog();
         $project->update($form_data); //query da eseguire
@@ -90,6 +99,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        //per cancellare le immagini nello storage
+        if($project->image){
+            Storage::DELETE($project->image);
+        }
         $project->delete();
         return redirect()->route('admin.projects.index')->with('message', $project->title . 'succesfull delected ');
 
