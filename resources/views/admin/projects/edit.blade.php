@@ -58,8 +58,7 @@
 
             </div>
         </form>
-
-
     </section>
+   @include('partials.editor')
 
 @endsection

@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="col-4 img-show">
-            <img src="{{ asset('storage/' . $project->image)}}" alt="{{$project->title}}" class="img-fluid"> 
+            <img src="{{ asset('storage/' . $project->image)}}" alt="{{$project->title}}" class="img-fluid "> 
         </div>
         <div class="col-6">
             <p>{{$project->content}}</p>

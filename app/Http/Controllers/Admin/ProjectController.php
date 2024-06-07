@@ -49,7 +49,7 @@ class ProjectController extends Controller
         }
 
         $newProject = Project::create($form_data);
-        return redirect()->route('admin.projects.show', $newProject->slug);
+        return redirect()->route('admin.projects.show', $newProject->slug)->with('message' , ' New project succesfull created ');
     }
 
     /**
@@ -81,9 +81,11 @@ class ProjectController extends Controller
         if($request->hasFile('image')){
             //controllo se prima c'era un'img
             if($project->image){
-                Storage::DELETE($project->image);
+                Storage::delete($project->image);
             }
-            $img_path =Storage::put('image', $request->image); 
+            //uso il metodo per salvare il file con il nome originale
+            $name = $request->image->getClientOriginalName();
+            $img_path =Storage::put('public/image/', $name); 
 
             $form_data['image'] = $img_path;
         }
@@ -101,7 +103,7 @@ class ProjectController extends Controller
     {
         //per cancellare le immagini nello storage
         if($project->image){
-            Storage::DELETE($project->image);
+            Storage::delete($project->image);
         }
         $project->delete();
         return redirect()->route('admin.projects.index')->with('message', $project->title . 'succesfull delected ');

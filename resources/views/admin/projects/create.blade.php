@@ -20,7 +20,7 @@
             <!-- IMAGE -->
             <div class="mb-3">
                 <!-- placeholder -->
-                <img src="/image/placeholder.jpeg" id="upload_preview" witdh="100" class="img-preview">
+                <img src="/image/placeholder.jpeg" id="upload_preview" witdh="100" class="img-show">
                 <label for="image" class="form-label mt-3">Image</label>
                 <input type="file" accept="image/*" class="form-control @error('image') is-invalid @enderror" id="upload_image"
                     name="image" value="{{ old('image') }}">
@@ -32,7 +32,7 @@
             <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
                 <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" required>
-                {{ old('content') }}
+                {!! old('content') !!}
               </textarea>
                 @error('content')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -45,8 +45,8 @@
 
             </div>
         </form>
-
-
     </section>
+    <!-- nice editor nel content si inserisce i punti esclamativi -->
+   @include('partials.editor')
 
 @endsection
