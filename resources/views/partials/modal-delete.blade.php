@@ -10,8 +10,8 @@
                 <p>Are you sure you want to delete <span id="modal-item-title"></span>?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                <button type="button" class="btn btn-primary">Elimina</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Delete</button>
             </div>
         </div>
     </div>

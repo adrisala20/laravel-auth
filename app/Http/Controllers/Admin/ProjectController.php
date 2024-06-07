@@ -19,7 +19,7 @@ class ProjectController extends Controller
     public function index()
     {
         //$projects= Project::all();
-        $projects = Project::paginate(5);
+        $projects = Project::paginate(10);
        // dd($projects)  
         return view("admin.projects.index",compact("projects"));
     }
@@ -85,7 +85,7 @@ class ProjectController extends Controller
             }
             //uso il metodo per salvare il file con il nome originale
             $name = $request->image->getClientOriginalName();
-            $img_path =Storage::put('public/image/', $name); 
+            $img_path =Storage::put('image', $name); 
 
             $form_data['image'] = $img_path;
         }

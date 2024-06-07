@@ -3,6 +3,11 @@
 
 @section('content')
     <section class="container">
+        <!-- message delete/create -->
+        @if(session()->has('message'))
+        <div class="alert alert-success">{{session()->get('message')}}</div>
+        @endif
+        <!-- title -->
         <div class="d-flex justify-content-between align-items-center py-4">
             <h1 class="text-uppercase fw-bold">Projects</h1>
             <a href="{{route('admin.projects.create')}}" class="btn btn-primary">New project</a>
@@ -36,7 +41,7 @@
                     <form action="{{route('admin.projects.destroy', $project->slug)}}" method="POST" class="d-inline-block">
                     @csrf
                     @method('Delete')
-                    <button type="submit" class="delete-button border-0 bg-transparent text-danger" data-item-title="{{$project->title}}">
+                    <button type="submit" class="delete-button border-0 bg-transparent text-danger" data-item-title="{{$project->title}}" data-item-id = "{{ $project->id }}">
                     <i class="fa-solid fa-trash"></i>
                     </button>
                 </form>

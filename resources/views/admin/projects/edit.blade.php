@@ -8,6 +8,7 @@
             <h2>Edit project: {{$project->title}}</h2>
             <a href="{{route('admin.projects.show', $project->slug)}}" class="btn btn-danger">Show Project</a>
         </div>
+        <!-- FORM -->
         <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
