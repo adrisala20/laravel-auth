@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Support\Facades\Storage;
+Use Illuminate\Support\Facades\Auth;
 
 //use Illuminate\Support\Facades\DB;
 
@@ -19,6 +20,7 @@ class ProjectController extends Controller
     public function index()
     {
         //$projects= Project::all();
+        $id = Auth::id();
         $projects = Project::paginate(10);
        // dd($projects)  
         return view("admin.projects.index",compact("projects"));

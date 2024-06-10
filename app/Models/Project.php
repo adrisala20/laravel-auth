@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\Category;
 
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable = ['title','image', 'content', 'slug'];
+    protected $fillable = ['title','image', 'content', 'slug', 'category_id'];
     public static function generateSlug($title)
     {
         $slug = Str::slug($title, '-');
@@ -19,5 +20,9 @@ class Project extends Model
             $count++;
         }
         return $slug;
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
