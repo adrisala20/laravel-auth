@@ -26,7 +26,11 @@
         <div class="col-6">
             <p>{{$project->content}}</p>
         </div>      
-</div>
+    </div>
+    @if($project->category)
+    <p>Category: {{$project->category->name}}</p>
+    @endif
+
 </section>
 @include('partials.modal-delete')
 @endsection

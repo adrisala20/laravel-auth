@@ -52,6 +52,19 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+             <!-- CATEGORY SELECt -->
+             <div class="mb-3">
+                <label for="category_id" class="form-label">Select Category</label>
+                <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                    <option value="">Select Category</option>
+                  @foreach ($categories as $category)
+                      <option value="{{$category->id}}" {{ $category->id == $project->category_id ? 'selected' : '' }}>{{$category->name}}</option>
+                  @endforeach
+                </select>
+                @error('category_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
             <!-- BUTTONS -->
             <div class="mb-3">
                 <button type="submit" class="btn btn-danger">Save</button>
