@@ -5,7 +5,7 @@ import.meta.glob(["../img/**", "../fonts/**"]);
 
 const deleteSubmitButtons = document.querySelectorAll(".delete-button");
 deleteSubmitButtons.forEach((button)=>{
-    button.addEventListener(('click', (e)=>{
+    button.addEventListener('click', (e)=>{
         e.preventDefault();
 
         const dataTitle = button.getAttribute("data-item-title");
@@ -24,7 +24,7 @@ deleteSubmitButtons.forEach((button)=>{
         buttonDelete.addEventListener("click", () => {
             button.parentElement.submit();
         });
-    }))
+    })
 });
 
 //funzione per prendere i file

@@ -3,7 +3,7 @@
         <i class="fa-solid fa-square-rss"></i> Projects</h2>
     </a>
     <ul class="nav flex-column">
-      <!-- link dashboard -->
+        <!-- link dashboard -->
         <li class="nav-item">
           <a class="nav-link text-white {{Route::currentRouteName() == 'admin.dashboard' ? 'active' : ''}}" href="{{route('admin.dashboard')}}"><i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i>Dasboard</a>
         </li>

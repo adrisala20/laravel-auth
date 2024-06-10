@@ -31,7 +31,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:200',
         ]);
         $form_data = $request->all();
         $form_data['slug'] = Category::generateSlug($form_data['name']);
@@ -44,6 +44,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        //dd($category);
         return view("admin.categories.show", compact("category"));
     }
 
@@ -60,8 +61,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:200',
+        ]);
+        $form_data = $request->all();
+        if ($category->name !== $form_data['name']) {
+            $form_data['slug'] = Category::generateSlug($form_data['name']);
+        }
+        $category->update($form_data);
+        return redirect()->route('admin.categories.show', $category->slug);
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -69,6 +79,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('message', $category->name . ' succefully deleted');
+        return redirect()->route('admin.categories.index')->with('message', $category->name . ' è stato eliminato');
     }
 }
+

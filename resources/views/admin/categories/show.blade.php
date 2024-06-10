@@ -27,7 +27,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($category->$projects as $project)
+            @foreach ($category->projects as $project)
             <tr>
                 <td>{{$project->id}}</td>
                 <td>{{$project->title}}</td>

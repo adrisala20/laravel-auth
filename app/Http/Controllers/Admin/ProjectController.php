@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\Category;
 use Illuminate\Http\Request;
+
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +24,7 @@ class ProjectController extends Controller
     {
         //$projects= Project::all();
         $id = Auth::id();
-        $projects = Project::paginate(10);
+        $projects = Project::where('category_id', $id)->paginate(10);
        // dd($projects)  
         return view("admin.projects.index",compact("projects"));
     }
@@ -41,12 +43,13 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $form_data = $request->all();
+        //$form_data = $request->all();
         $form_data = $request->validated();
         $form_data['slug'] = Project::generateSlug($form_data['title']);
         if($request->hasFile('image')){
             //dd($request->file('image')); 
-            $img_path =Storage::put('image', $request->image); //storage/image//nomefile.jpeg
+            $name = $request->image->getClientOriginalName();
+            $img_path =Storage::putFileAs('image', $request->image, $name); //storage/image//nomefile.jpeg
             //dd($img_path);
             $form_data['image'] = $img_path;
         }
@@ -78,6 +81,7 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $form_data = $request->all();
+        $form_data['category_id'] = Auth::id();
         if ($project->title !== $form_data['title']) {
             $form_data['slug'] = Project::generateSlug($form_data['title']);
         };
@@ -88,7 +92,7 @@ class ProjectController extends Controller
             }
             //uso il metodo per salvare il file con il nome originale
             $name = $request->image->getClientOriginalName();
-            $img_path =Storage::put('image', $name); 
+            $img_path =Storage::putFileAs('image', $request->image, $name); 
 
             $form_data['image'] = $img_path;
         }
